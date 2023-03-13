@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net.WebSockets;
 
 namespace ExceptionHandlingExercise
 {
@@ -8,6 +10,10 @@ namespace ExceptionHandlingExercise
     {
         static void Main(string[] args)
         {
+            var arr = new char[9]{'a', 'b','c','d','e','f','1','2','3'};
+            var numbers =  new List<int>();
+            string str = "";
+
             // -----------------------------------------------------------------------------
             // First create an char[], it must contain 6 numbers and 3 letters - name it arr
             // Create a list called numbers that will hold integers
@@ -18,7 +24,23 @@ namespace ExceptionHandlingExercise
             // Below we will set this up 
             // ------------------------------------------------------------------------------
 
-
+            foreach (var  character in arr)
+            {
+                try
+                {
+                    str = character.ToString();
+                    int numInArray = int.Parse(str);
+                    numbers.Add(numInArray);
+                }
+                catch
+                {
+                    Console.WriteLine($"Unable to Parse '{character}'");
+                }
+            }
+            foreach(var num in numbers)
+            {
+                Console.WriteLine(num);
+            }
 
             //TODO START HERE:
             
